@@ -1,1 +1,3 @@
 *.sdk
+.spread-reuse.yaml
+.*.lock

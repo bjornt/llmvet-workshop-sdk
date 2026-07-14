@@ -1,0 +1,17 @@
+project: llmvet
+
+path: /home/ubuntu/project
+
+backends:
+  lxd:
+    systems:
+      - ubuntu-24.04:
+          username: ubuntu
+          vm: true
+
+suites:
+  main/:
+    summary: Test llmvet SDK inside workshops with different bases
+    environment:
+      BASE/noble: ubuntu@24.04
+      BASE/resolute: ubuntu@26.04

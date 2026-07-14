@@ -1,0 +1,56 @@
+summary: Launch workshop with llmvet SDK and verify it prints a review URL
+
+prepare: |
+  envsubst '${BASE}' <workshop.yaml.in >workshop.yaml
+  workshop launch
+
+restore: |
+  workshop remove || true
+
+execute: |
+  # Verify the SDK is installed and the binary is on PATH
+  workshop exec -- llmvet --version
+
+  # Create a git repository with an uncommitted change
+  workshop exec -- bash -c '
+    set -e
+    cd ~
+    rm -rf test-repo
+    mkdir test-repo
+    cd test-repo
+    git init
+    git config user.email "test@example.com"
+    git config user.name "Test"
+    echo "line one" > file.txt
+    git add file.txt
+    git commit -m "initial commit"
+    echo "line one" > file.txt
+    echo "line two" >> file.txt
+  '
+
+  # Run llmvet, capture output, and verify it prints a URL.
+  # llmvet starts a web server, so we run it with a timeout in the
+  # background, wait for the URL to appear, then kill it.
+  workshop exec -- bash -c '
+    set -e
+    cd ~/test-repo
+    timeout 10 llmvet > /tmp/llmvet-output.txt 2>&1 &
+    pid=$!
+
+    # Wait up to 10 seconds for the URL to appear in the output
+    for i in $(seq 1 50); do
+      if grep -q "http" /tmp/llmvet-output.txt 2>/dev/null; then
+        break
+      fi
+      sleep 0.2
+    done
+
+    kill $pid 2>/dev/null || true
+    wait $pid 2>/dev/null || true
+
+    cat /tmp/llmvet-output.txt
+    grep -qE "http://[0-9.]+:[0-9]+" /tmp/llmvet-output.txt
+  '
+
+debug: |
+  workshop tasks

@@ -1,0 +1,4 @@
+name: test-llmvet
+base: ${BASE}
+sdks:
+  - name: try-llmvet
