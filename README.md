@@ -39,7 +39,6 @@ This workshop makes llmvet's web UI reachable at the workshop's external IP.
 
 ```bash
 workshop shell
-cd /path/to/your/repo
 llmvet
 # prints "Open http://<external-ip>:<port>/ to review"
 # copy the URL directly into your browser
