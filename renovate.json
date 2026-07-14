@@ -5,18 +5,23 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/^RELEASE$/"],
+      "managerFilePatterns": ["/^VERSION$/"],
       "matchStrings": ["(?<currentValue>[0-9.]+)"],
       "depNameTemplate": "bjornt/llmvet",
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "semver"
     }
   ],
-  "baseBranchPatterns": ["latest"],
+  "baseBranchPatterns": ["main"],
+  "major": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "matchPackageNames": ["bjornt/llmvet"],
-      "matchBaseBranches": ["latest"]
+      "matchBaseBranches": ["main"],
+      "automerge": true,
+      "automergeType": "commit"
     }
   ]
 }
