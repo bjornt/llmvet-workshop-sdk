@@ -23,6 +23,6 @@ jobs:
       platform-flag: "--platform"
       risk: "stable"
       run-tests: true
-      runs-on: "ubuntu-latest"
+      runs-on: ["ubuntu-latest"]
     secrets:
       SDKCRAFT_STORE_CREDENTIALS: ${{ secrets.SDKCRAFT_STORE_CREDENTIALS }}
