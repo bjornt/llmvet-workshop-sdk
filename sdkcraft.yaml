@@ -1,6 +1,5 @@
 name: llmvet
 adopt-info: llmvet
-build-base: ubuntu@24.04
 summary: Local code-review tool for LLM/agent harnesses
 description: |
   This SDK provides llmvet, a local code-review tool that shows diffs in the
@@ -9,12 +8,18 @@ description: |
   printed URL can be opened directly in a browser.
 license: Apache-2.0
 platforms:
-  amd64:
-    build-on: [amd64]
-    build-for: [amd64]
-  arm64:
-    build-on: [amd64]
-    build-for: [arm64]
+  ubuntu@24.04:amd64:
+    build-on: [ubuntu@24.04:amd64]
+    build-for: [ubuntu@24.04:amd64]
+  ubuntu@24.04:arm64:
+    build-on: [ubuntu@24.04:amd64]
+    build-for: [ubuntu@24.04:arm64]
+  ubuntu@26.04:amd64:
+    build-on: [ubuntu@26.04:amd64]
+    build-for: [ubuntu@26.04:amd64]
+  ubuntu@26.04:arm64:
+    build-on: [ubuntu@26.04:amd64]
+    build-for: [ubuntu@26.04:arm64]
 
 parts:
   llmvet:
