@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+cat <<EOF >/etc/profile.d/llmvet.sh
+export PATH="${SDK}/usr/bin:\$PATH"
+export LLMVET_HOST=\$(hostname -I | awk '{print \$1}')
+EOF

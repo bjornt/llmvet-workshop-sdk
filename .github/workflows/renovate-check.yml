@@ -1,0 +1,10 @@
+name: Renovate Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  renovate-check:
+    uses: canonical/sdkcraft-actions/.github/workflows/renovate-check.yml@main

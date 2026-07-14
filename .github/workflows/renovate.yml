@@ -1,0 +1,10 @@
+name: Renovate
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  renovate:
+    uses: canonical/sdkcraft-actions/.github/workflows/renovate.yml@main
