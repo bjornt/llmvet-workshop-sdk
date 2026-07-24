@@ -21,7 +21,8 @@
       "matchPackageNames": ["bjornt/llmvet"],
       "matchBaseBranches": ["main"],
       "automerge": true,
-      "automergeType": "commit"
+      "automergeType": "pr",
+      "platformAutomerge": true
     }
   ]
 }
